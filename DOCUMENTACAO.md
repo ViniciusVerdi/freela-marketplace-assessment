@@ -156,13 +156,13 @@ curl -X POST http://localhost:8080/contratos \
   -d '{"clienteId":"11111111-1111-1111-1111-111111111111","freelancerId":"22222222-2222-2222-2222-222222222222","titulo":"API de pagamentos","valor":3500.00}'
 
 # registrar entrega
-curl -X POST http://localhost:8080/contratos/{id}/entrega -H 'X-Correlation-Id: teste-001'
+curl -X POST http://localhost:8080/contratos/entrega/{id} -H 'X-Correlation-Id: teste-001'
 
 # concluir
-curl -X POST http://localhost:8080/contratos/{id}/concluir -H 'X-Correlation-Id: teste-001'
+curl -X POST http://localhost:8080/contratos/concluir/{id} -H 'X-Correlation-Id: teste-001'
 
 # cancelar
-curl -X POST http://localhost:8080/contratos/{id}/cancelar -H 'X-Correlation-Id: teste-001'
+curl -X POST http://localhost:8080/contratos/cancelar/{id} -H 'X-Correlation-Id: teste-001'
 ```
 
 Consultas:
