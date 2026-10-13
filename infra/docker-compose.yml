@@ -39,7 +39,8 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     healthcheck:
-      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list >/dev/null 2>&1"]
+      test:
+        ["CMD-SHELL", "/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list >/dev/null 2>&1"]
       interval: 10s
       timeout: 10s
       retries: 15
@@ -56,6 +57,34 @@ services:
     environment:
       KAFKA_CLUSTERS_0_NAME: freela-local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:19092
+    networks: [freela-net]
+
+  zipkin:
+    image: openzipkin/zipkin:latest
+    container_name: freela-zipkin
+    ports:
+      - "9411:9411"
+    networks: [freela-net]
+
+  loki:
+    image: grafana/loki:latest
+    container_name: freela-loki
+    ports:
+      - "3100:3100"
+    networks: [freela-net]
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: freela-grafana
+    depends_on:
+      - loki
+    ports:
+      - "3000:3000"
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
     networks: [freela-net]
 
 volumes:

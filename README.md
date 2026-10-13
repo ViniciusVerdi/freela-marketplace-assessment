@@ -131,9 +131,9 @@ contrato_db
 Principais recursos HTTP:
 
 ```text
-POST /api/contratos
-GET  /api/contratos
-GET  /api/contratos/{id}
+POST /contratos
+GET  /contratos
+GET  /contratos/{id}
 ```
 
 Exemplo de criação de contrato:
@@ -234,7 +234,7 @@ As rotas configuradas são:
 
 | Caminho | Serviço |
 |---|---|
-| `/api/contratos/**` | `contrato-service` |
+| `/contratos/**` | `contrato-service` |
 | `/api/notificacoes/**` | `notificacao-service` |
 | `/api/reputacoes/**` | `reputacao-service` |
 | `/api/auditoria/**` | `auditoria-service` |
@@ -449,7 +449,7 @@ mvn -pl auditoria-service spring-boot:run
 Com a infraestrutura e as aplicações em execução, um contrato pode ser criado pelo Gateway:
 
 ```bash
-curl -i -X POST http://localhost:8080/api/contratos \
+curl -i -X POST http://localhost:8080/contratos \
   -H 'Content-Type: application/json' \
   -H 'X-Correlation-Id: teste-contrato-001' \
   -d '{
@@ -463,13 +463,13 @@ curl -i -X POST http://localhost:8080/api/contratos \
 Consulta dos contratos:
 
 ```bash
-curl http://localhost:8080/api/contratos
+curl http://localhost:8080/contratos
 ```
 
 Consulta de um contrato específico:
 
 ```bash
-curl http://localhost:8080/api/contratos/{id}
+curl http://localhost:8080/contratos/{id}
 ```
 
 ## Tecnologias

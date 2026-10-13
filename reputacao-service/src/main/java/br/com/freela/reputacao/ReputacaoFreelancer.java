@@ -5,4 +5,16 @@ class ReputacaoFreelancer {
  @Id UUID freelancerId; int contratosConcluidos; BigDecimal valorTotal=BigDecimal.ZERO;
  protected ReputacaoFreelancer(){} ReputacaoFreelancer(UUID id){this.freelancerId=id;}
  void registrarContrato(BigDecimal valor){contratosConcluidos++; valorTotal=valorTotal.add(valor);}
+
+ public UUID getFreelancerId() {
+  return freelancerId;
+ }
+
+ public int getContratosConcluidos() {
+  return contratosConcluidos;
+ }
+
+ public BigDecimal getValorTotal() {
+  return valorTotal;
+ }
 }
